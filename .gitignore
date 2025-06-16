@@ -5,3 +5,5 @@ __pycache__/
 sudoku.csv
 sudoku_puzzles.txt
 sudoku_solutions.txt
+generated_puzzles.txt
+generated_solutions.txt
