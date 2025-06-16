@@ -44,14 +44,14 @@ def solve(board):
     return False
 
 # Optional: allow running this file directly for a test
-"""
-if __name__ == "__main__":
-    puzzle_string = "800000000003600000070090020050007000000045700000100030001000068008500010090000400"
-    board = parse_sudoku(puzzle_string)
 
-    if solve(board):
-        for row in board:
-            print(" ".join(str(num) for num in row))
-    else:
-        print("No solution found.")
-    """
+# if __name__ == "__main__":
+#     puzzle_string = "800000000003600000070090020050007000000045700000100030001000068008500010090000400"
+#     board = parse_sudoku(puzzle_string)
+
+#     if solve(board):
+#         for row in board:
+#             print(" ".join(str(num) for num in row))
+#     else:
+#         print("No solution found.")
+    
