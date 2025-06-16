@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+.env
+sudoku.csv
+sudoku_puzzles.txt
+sudoku_solutions.txt
