@@ -1,7 +1,9 @@
 # solver.py
-
 def parse_sudoku(puzzle_string):
     return [[int(puzzle_string[i * 9 + j]) for j in range(9)] for i in range(9)]
+
+def board_to_string(board):
+    return ''.join(str(num) for row in board for num in row)
 
 def valid(board, row, col, num):
     for i in range(9):
@@ -43,15 +45,36 @@ def solve(board):
         board[row][col] = 0
     return False
 
+def count_solutions(board):
+    temp_board = [row[:] for row in board]  # Deep copy
+    solutions = [0]
+    
+    def solve_and_count(board):
+        if solutions[0] >= 2:  # Stop after finding two solutions
+            return
+        mrv_cell = find_mrv_cell(board)
+        if not mrv_cell:
+            solutions[0] += 1
+            return
+        row, col, options = mrv_cell
+        for num in options:
+            board[row][col] = num
+            solve_and_count(board)
+            board[row][col] = 0
+            if solutions[0] >= 2:
+                return
+    
+    solve_and_count(temp_board)
+    return solutions[0]
 # Optional: allow running this file directly for a test
 
 # if __name__ == "__main__":
-#     puzzle_string = "800000000003600000070090020050007000000045700000100030001000068008500010090000400"
-#     board = parse_sudoku(puzzle_string)
+#      puzzle_string = "800000000003600000070090020050007000000045700000100030001000068008500010090000400"
+#      board = parse_sudoku(puzzle_string)
 
-#     if solve(board):
-#         for row in board:
-#             print(" ".join(str(num) for num in row))
-#     else:
-#         print("No solution found.")
+#      if solve(board):
+#          for row in board:
+#              print(" ".join(str(num) for num in row))
+#      else:
+#          print("No solution found.")
     
