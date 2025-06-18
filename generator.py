@@ -1,7 +1,7 @@
 import random
 import copy
 import time
-from solver import solve, count_solutions, board_to_string  # Import from solver.py
+from solver import solve, count_solutions, board_to_string, solve_timed  # Updated import
 
 # Generate a full valid Sudoku grid
 def generate_full_grid():
@@ -60,27 +60,42 @@ def print_board(board):
         print()
     print()
 
+# Measure difficulty based on solving time
+def measure_difficulty_time(puzzle):
+    puzzle_copy = copy.deepcopy(puzzle)
+    solve_time = solve_timed(puzzle_copy)
+
+        # Time range observed: 0.00028 - 0.00171
+    if solve_time <= 0.0005:
+        difficulty = "Easy"
+    elif solve_time <= 0.0012:
+        difficulty = "Medium"
+    else:
+        difficulty = "Hard"
+
+
+    return difficulty, solve_time
+
 # Main generator function
 def generate_puzzle(blanks=40):
-    # Generate a full grid
     solution_board = generate_full_grid()
-    
-    # Remove cells to create puzzle
     puzzle_board = remove_cells(solution_board, blanks)
-    
     return puzzle_board, solution_board
 
 # Run the generator
 if __name__ == "__main__":
     start_time = time.time()
     puzzle, solution = generate_puzzle(blanks=40)
-    
+
     print("\nGenerated Sudoku Puzzle:\n")
     print_board(puzzle)
-    
+
     print("\nCorresponding Solution:\n")
     print_board(solution)
-    
+
+    difficulty, solve_time = measure_difficulty_time(puzzle)
+    print(f"\nDifficulty: {difficulty} (Solved in: {solve_time:.5f} seconds)")
+
     save_puzzle(puzzle, solution)
-    
-    print(f"\nTime taken: {time.time() - start_time:.2f} seconds")
+
+    print(f"\nTotal generation time: {time.time() - start_time:.2f} seconds")
