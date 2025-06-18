@@ -96,7 +96,7 @@ def draw_buttons():
     buttons = [
         ("Pause", 20, BUTTON_Y_START, BUTTON_WIDTH - 40, 40),
         ("Resume", 20, BUTTON_Y_START + BUTTON_SPACING, BUTTON_WIDTH - 40, 40),
-        ("Start", 20, BUTTON_Y_START + 2 * BUTTON_SPACING, BUTTON_WIDTH - 40, 40),
+        ("Timer R", 20, BUTTON_Y_START + 2 * BUTTON_SPACING, BUTTON_WIDTH - 40, 40),
         ("All Solve", 20, BUTTON_Y_START + 4 * BUTTON_SPACING, BUTTON_WIDTH - 40, 40),
         ("Generate", 20, BUTTON_Y_START + 6 * BUTTON_SPACING, BUTTON_WIDTH - 40, 40)
     ]
